@@ -1,0 +1,42 @@
+//following is the structure of node for a linked list:
+/*  
+    
+    class Node {
+        public :
+        int data;
+        Node *next;
+        Node(int data) {
+            this -> data = data;
+            this -> next = NULL;
+        }
+    };
+    */
+//Function to detect a loop in linked list:
+Node* DetectLoop(Node* head) {
+
+    if(head == NULL){
+        return NULL;
+    }
+
+    Node* slowpointer = head;
+    Node* fastpointer = head;
+
+    while(slowpointer != NULL && fastpointer !=NULL) {
+        
+        fastpointer = fastpointer -> next;
+        if(fastpointer != NULL) {
+            fastpointer = fastpointer -> next;
+        }
+
+        slowpointer = slowpointer -> next;
+
+        if(slowpointer == fastpointer) {
+            return slowpointer;
+        }
+    }
+
+    return NULL;
+
+}
+// if the above function returns NULL then no loop exists
+//in linked list else there exists a loop in linked list.
